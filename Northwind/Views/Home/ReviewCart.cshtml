@@ -1,0 +1,38 @@
+﻿@model Northwind.Models
+@model IEnumerable<Product>
+
+@{
+    ViewBag.Title = "ReviewCart";
+}
+
+<h2>Review Your Order</h2>
+
+@foreach (Product p in Model)
+{
+    
+}
+
+
+
+@*Thanks for your order, @CompanyName! We will ship
+@{
+    double total = 0;
+    foreach (Order o in ViewBag.Orders)
+    {
+
+        total += o.Qty * o.Product.Price;
+        @String.Format("{0} {1} {2}", o.Qty, o.Product.Name, ", ")
+
+    }
+} to the following address: </h4>
+<br />
+@ViewBag.Address<br />
+@ViewBag.City, @ViewBag.State @ViewBag.Zip
+<br />
+
+<h3>Order Total: @total.ToString("C")</h3>*@
+
+@section scripts
+{
+        
+}
