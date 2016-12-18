@@ -2,6 +2,7 @@
 @model IEnumerable<Product>
 @{
     ViewBag.Title = "Product";
+    int CustomerID = Request.IsAuthenticated ? Convert.ToInt32(User.Identity.Name) : -1;
 }
 
 <table class="table table-hover table-responsive">
@@ -126,7 +127,42 @@
                 return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
             }
             $('#Total').html(numberWithCommas(total.toFixed(2)));
+        });
+
         
+        $('#AddToCart').click(function () {
+            //hide modal
+            debugger;
+            $('#myModal').modal('hide');
+            var loadingNotice = new jBox('Notice', {
+                content: 'Please wait...',
+                autoClose: false,
+                closeOnClick: false,
+                color: 'blue',
+                overlay: true,
+                target: $('#' + ProductID),
+                position: { x: 'left', y: 65 }
+            });
+            loadingNotice.open();
+            //AJAX post request
+            var URL = "@Url.Content("~")Cart/AddToCart";
+            $.post(URL, {ProductID: ProductID, CustomerID: @CustomerID, Quantity: $('#Quantity').val() })
+            .always(function(data, textStatus, statusObject ) {
+                loadingNotice.close();
+                if(statusObject.status == 200) {
+                    new jBox('Notice', {
+                        content: $('#name_' + ProductID).html() + ' added to cart',
+                        autoClose: 2000,
+                        color: 'green',
+                        closeOnEsc: true,
+                        target: $('#' + ProductID),
+                        position: { x: 'left', y: 65}
+                    });
+                } else {
+                    console.log("Http response code: " + data.status);
+                    console.log("Http response: " + data.statusText);
+                }
+            });
         });
 
         $(function () {

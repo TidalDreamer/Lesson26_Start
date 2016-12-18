@@ -12,6 +12,7 @@
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css' />
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jBox/0.4.7/jBox.js"></script>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -51,25 +52,32 @@
                                 <li role="separator" class="divider"></li>
                             }
                             <li><a href="~/Customer/Account"><i class="fa fa-user"></i> Your Account</a></li>
-                            <li><a href="#"><i class="fa fa-shopping-cart"></i> Review Cart</a></li>
+                            <li><a href="~/Cart/DisplayCart"><i class="fa fa-shopping-cart"></i> Review Cart</a></li>
                         </ul>
                     </li>
+                    @*<li>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>Cart
+                        </a>
+                    </li>*@
                 </ul>
-                    <form class="navbar-form navbar-left hidden-xs" role="search" method="post" action="~/Product/SearchResults">
-                        @Html.AntiForgeryToken()
-                        <div class="form-group">
-                            <input type="text" class="form-control" name="SearchString" id="SearchString" placeholder="Product Search">
-                        </div>
-                        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                    </form>
+                <form class="navbar-form navbar-left hidden-xs" role="search" method="post" action="~/Product/SearchResults">
+                    @Html.AntiForgeryToken()
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="SearchString" id="SearchString" placeholder="Product Search">
+                    </div>
+                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                </form>
                 @if (Request.IsAuthenticated)
                 {
                     <ul class="nav navbar-nav navbar-right">
+                        <li><a href="~/Cart/DisplayCart"><i class="fa fa-shopping-cart"></i> Cart</a></li>
                         <li><a href="~/Home/SignOut"><i class="fa fa-sign-out"></i> Sign Out</a></li>
                     </ul>
-                 }
+                }
 
             </div>
+
         </div>
     </div>
     <div class="container body-content">

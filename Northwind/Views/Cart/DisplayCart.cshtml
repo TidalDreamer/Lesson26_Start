@@ -1,0 +1,19 @@
+﻿@using Northwind.Models
+@model IEnumerable<Cart>
+
+@{
+    ViewBag.Title = "DisplayCart";
+}
+
+<tbody>
+    @foreach (Cart c in Model)
+    {
+        <tr class="product-row" id="@c.ProductID">
+            <td><span id="name_@c.ProductID">@c.ProductName</span> (@c.Quantity)</td>
+            <td class="text-right">
+                $<span id="price_@c.ProductID">@string.Format("{0:n2}", c.UnitPrice)</span>
+            </td>
+        </tr>
+    }
+</tbody>
+

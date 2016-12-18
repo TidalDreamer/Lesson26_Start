@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Northwind.Models;
 
 namespace Northwind
 {
@@ -17,6 +18,12 @@ namespace Northwind
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "DisplayCart",
+                url: "{controller} /{action}/{id}",
+                defaults: new { controller = "Cart", action = "DisplayCart", id = UrlParameter.Optional }
             );
         }
     }

@@ -18,7 +18,6 @@ namespace Northwind.Models
         public int ProductID { get; set; }
         public Nullable<int> CustomerID { get; set; }
         public Nullable<int> Quantity { get; set; }
-    
         public virtual Customer Customer { get; set; }
         public virtual Product Product { get; set; }
     }
